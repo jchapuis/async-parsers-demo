@@ -1,0 +1,5 @@
+[0m[[0m[31merror[0m] [0m[0mC:\Users\jchapuis\Dropbox\Nexthink\git\async-parsers-demo\src\main\scala\Google.scala:73:17: value Completions is not a member of Unit[0m
+[0m[[0m[31merror[0m] [0m[0mpossible cause: maybe a semicolon is missing before `value Completions'?[0m
+[0m[[0m[31merror[0m] [0m[0m                Completions (start.pos, CompletionSet(list.filterNot(_ == s).map(Completion(_)))))[0m
+[0m[[0m[31merror[0m] [0m[0m                ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
