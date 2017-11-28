@@ -21,8 +21,15 @@ object GoogleGrammar extends Parsers with AsyncRegexCompletionSupport with Terms
             Task.eval(Failure("keyword term", start))
           } else if (start.offset + s.length == in.source.length()) {
             Task.eval(Failure("incomplete term", start))
-          } else
-            Task.eval(Success(s, in.drop(start.offset + s.length - in.offset)))
+          } else {
+            val indexOfParen = Seq(openParen, closeParen).map(s.indexOf).filter(_ > 0)
+            if (indexOfParen.nonEmpty) {
+              // term embeds parenthesis, end it at first paren
+              Task.eval(Success(s, in.drop(start.offset + indexOfParen.min - in.offset)))
+            } else {
+              Task.eval(Success(s, in.drop(start.offset + s.length - in.offset)))
+            }
+          }
         })
         .getOrElse(Task.eval(Failure("missing some input", start)))
     }
